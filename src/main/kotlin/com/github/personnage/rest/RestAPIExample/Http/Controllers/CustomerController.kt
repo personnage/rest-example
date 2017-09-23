@@ -12,7 +12,7 @@ class CustomerController (val repository: CustomerRepository) {
     fun index(): Iterable<Customer> = repository.findAll()
 
     @GetMapping("/{id}")
-    fun show(@PathVariable id:Long): Customer = repository.findOne(id)
+    fun show(@PathVariable id:Long): Customer? = repository.findOne(id)
 
 //    @GetMapping("/{name}")
 //    fun showByName(@PathVariable name:String) = repository.findByLastName(name)
@@ -21,7 +21,5 @@ class CustomerController (val repository: CustomerRepository) {
     fun save(@RequestBody input:Customer): Customer = repository.save(input)
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable id:Long) {
-        repository.delete(id)
-    }
+    fun delete(@PathVariable id:Long) = repository.delete(id)
 }
